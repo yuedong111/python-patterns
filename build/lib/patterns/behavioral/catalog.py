@@ -46,6 +46,7 @@ class Catalog(object):
 
 # Alternative implementation for different levels of methods
 class CatalogInstance(object):
+
     """catalog of multiple methods that are executed depending on an init
 
     parameter
@@ -77,6 +78,7 @@ class CatalogInstance(object):
 
 
 class CatalogClass(object):
+
     """catalog of multiple class methods that are executed depending on an init
 
     parameter
@@ -111,6 +113,7 @@ class CatalogClass(object):
 
 
 class CatalogStatic(object):
+
     """catalog of multiple static methods that are executed depending on an init
 
     parameter
@@ -162,5 +165,5 @@ def main():
 
 
 if __name__ == "__main__":
-    test = CatalogInstance('param_value_1')
-    print(test.__class__)
+    import doctest
+    doctest.testmod()

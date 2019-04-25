@@ -24,8 +24,7 @@ Allow a request to pass down a chain of receivers until it is handled.
 import abc
 
 
-class Handler(object):
-    __metaclass__ = abc.ABCMeta
+class Handler(metaclass=abc.ABCMeta):
 
     def __init__(self, successor=None):
         self.successor = successor
@@ -34,7 +33,7 @@ class Handler(object):
         """
         Handle request and stop.
         If can't - call next handler in chain.
-        如果没有传给其他函数处理
+
         As an alternative you might even in case of success
         call the next handler.
         """
@@ -93,11 +92,11 @@ class FallbackHandler(Handler):
 
 def main():
     """
-    >>> h0 = ConcreteHandler0(ConcreteHandler1(ConcreteHandler2(FallbackHandler())))
-    >>> h1 = ConcreteHandler1(ConcreteHandler2())
+    >>> h0 = ConcreteHandler0()
+    >>> h1 = ConcreteHandler1()
     >>> h2 = ConcreteHandler2(FallbackHandler())
-    # >>> h0.successor = h1
-    # >>> h1.successor = h2
+    >>> h0.successor = h1
+    >>> h1.successor = h2
 
     >>> requests = [2, 5, 14, 22, 18, 3, 35, 27, 20]
     >>> for request in requests:
@@ -115,15 +114,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # h0 = ConcreteHandler0()
-    # h1 = ConcreteHandler1()
-    # h2 = ConcreteHandler2(FallbackHandler())
-    # h0.successor = h1
-    # h1.successor = h2
-    h0 = ConcreteHandler0(ConcreteHandler1(ConcreteHandler2(FallbackHandler())))
-
-    requests = [2, 5, 14, 22, 18, 3, 35, 27, 20]
-    for request in requests:
-        h0.handle(request)
-    # import doctest
-    # doctest.testmod(optionflags=doctest.ELLIPSIS)
+    import doctest
+    doctest.testmod(optionflags=doctest.ELLIPSIS)
