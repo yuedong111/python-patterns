@@ -27,14 +27,12 @@ class Action(object):
 
 
 def main():
-    """
-    >>> move = Action('move')
-    >>> person = Person('Jack', move)
-    >>> person.do_action().amount('5m').stop()
-    Jack move 5m then stop
-    """
+    move = Action('move')
+    person = Person('Jack', move)
+    person.do_action().amount('5m').stop()
 
 
 if __name__ == '__main__':
-    import doctest
-    doctest.testmod()
+    main()
+    # import doctest
+    # doctest.testmod()

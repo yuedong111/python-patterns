@@ -42,7 +42,6 @@ def main():
     # five
 
 
-
 if __name__ == "__main__":
     main()
     # import doctest
