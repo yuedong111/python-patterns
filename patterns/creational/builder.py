@@ -38,6 +38,7 @@ Decouples the creation of a complex object and its representation.
 # Abstract Building
 class Building(object):
     def __init__(self):
+        # 自动
         self.build_floor()
         self.build_size()
 
@@ -88,6 +89,7 @@ class ComplexHouse(ComplexBuilding):
 
 
 def construct_building(cls):
+    # 组合
     building = cls()
     building.build_floor()
     building.build_size()
