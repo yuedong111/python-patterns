@@ -42,6 +42,7 @@ Provides singleton-like behavior sharing state between instances.
 
 
 class Borg(object):
+    # 通过共享类变量实现状态state共享
     __shared_state = {}
 
     def __init__(self):
@@ -62,12 +63,12 @@ if __name__ == '__main__':
 
     rm1.state = 'Idle'
     rm2.state = 'Running'
-
+    print(rm1.__dict__)
     print('rm1: {0}'.format(rm1))
     print('rm2: {0}'.format(rm2))
 
     rm2.state = 'Zombie'
-
+    print(rm1.__dict__)
     print('rm1: {0}'.format(rm1))
     print('rm2: {0}'.format(rm2))
 
@@ -75,7 +76,7 @@ if __name__ == '__main__':
     print('rm2 id: {0}'.format(id(rm2)))
 
     rm3 = YourBorg()
-
+    print(rm3.__dict__)
     print('rm1: {0}'.format(rm1))
     print('rm2: {0}'.format(rm2))
     print('rm3: {0}'.format(rm3))
@@ -87,6 +88,7 @@ if __name__ == '__main__':
 # rm2: Zombie
 # rm1 id: 140732837899224
 # rm2 id: 140732837899296
+# {'state': 'Init'}
 # rm1: Init
 # rm2: Init
 # rm3: Init
