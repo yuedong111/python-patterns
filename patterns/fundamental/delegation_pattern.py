@@ -8,7 +8,7 @@ Author: https://github.com/IuryAlves
 *TL;DR80
 Allows object composition to achieve the same code reuse as inheritance.
 """
-#代表模式相当于对另个类的封装，对另一个类重命名！
+#代表模式相当于对另个类的封装，对另一个类重命名,可以代码伪装！
 
 class Delegator(object):
     """
