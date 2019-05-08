@@ -26,7 +26,8 @@ from __future__ import print_function
 import functools
 
 
-class lazy_property(object):
+class LazyProperty(object):
+
     def __init__(self, function):
         self.function = function
         functools.update_wrapper(self, function)
@@ -57,7 +58,7 @@ class Person(object):
         self.occupation = occupation
         self.call_count2 = 0
 
-    @lazy_property
+    @LazyProperty
     def relatives(self):
         # Get all relatives, let's assume that it costs much time.
         relatives = "Many relatives."
@@ -69,7 +70,34 @@ class Person(object):
         return "Father and mother"
 
 
+class NameDestination(object):
+    # 描述符
+    def __init__(self):
+        self.__name = None
+
+    def __get__(self, instance, owner):
+        # instace 为外层对象，owner为外层类名字。
+        print('call __get__')
+        print(instance, owner)
+        return self.__name
+
+    def __set__(self, instance, value):
+        print('call __set__')
+        print(instance)
+        if isinstance(value, str):
+            self.__name = value
+        else:
+            raise TypeError("Must be an string")
+
+
+class Test(object):
+    name = NameDestination()
+
+
 def main():
+    n = Test()
+    print(n.name)
+    n.name = "haha"
     Jhon = Person('Jhon', 'Coder')
     print(u"Name: {0}    Occupation: {1}".format(Jhon.name, Jhon.occupation))
     print(u"Before we access `relatives`:")
@@ -86,7 +114,11 @@ def main():
 if __name__ == '__main__':
     main()
 
-### OUTPUT ###
+### OUTPUT #
+#call __get__
+# <__main__.Test object at 0x000001D4A6882EF0> <class '__main__.Test'>
+# None
+# <__main__.Test object at 0x000001D158332F60>
 # Name: Jhon    Occupation: Coder
 # Before we access `relatives`:
 # {'call_count2': 0, 'name': 'Jhon', 'occupation': 'Coder'}
