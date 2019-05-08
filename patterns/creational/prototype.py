@@ -56,6 +56,7 @@ class PrototypeDispatcher(object):
 
 def main():
     dispatcher = PrototypeDispatcher()
+    #这里实例化很耗时，各个对象只有几个属性不同时可以这样self.__class__().__dict__.update()
     prototype = Prototype()
 
     d = prototype.clone()

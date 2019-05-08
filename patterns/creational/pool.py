@@ -75,7 +75,7 @@ def main():
     print('Outside func: {}'.format(sample_queue.get()))
 
     if not sample_queue.empty():
-        print(sample_queue.get())
+        print("sd", sample_queue.get())
 
 
 if __name__ == '__main__':
