@@ -38,8 +38,10 @@ class C(A, B):
 class Visitor(object):
     def visit(self, node, *args, **kwargs):
         meth = None
+        # print(node.__class__.__mro__)
         for cls in node.__class__.__mro__:
             meth_name = 'visit_' + cls.__name__
+            print(meth_name)
             meth = getattr(self, meth_name, None)
             if meth:
                 break
@@ -56,21 +58,22 @@ class Visitor(object):
 
 
 def main():
-    """
-    >>> a, b, c = A(), B(), C()
-    >>> visitor = Visitor()
+    # 访问继承自B class的class
+    a, b, c = A(), B(), C()
+    visitor = Visitor()
 
-    >>> visitor.visit(a)
-    generic_visit A
+    visitor.visit(a)
+    # generic_visit A
 
-    >>> visitor.visit(b)
-    visit_B B
+    visitor.visit(b)
+    # visit_B B
 
-    >>> visitor.visit(c)
-    visit_B C
-    """
+    visitor.visit(c)
+    # visit_B C
+
 
 
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    # import doctest
+    # doctest.testmod()
+    main()
