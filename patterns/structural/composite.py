@@ -71,7 +71,7 @@ if __name__ == '__main__':
     graphic1.add(ellipse2)
     graphic1.add(ellipse3)
     graphic2.add(ellipse4)
-
+    # graphic1为三角形，graphic2为直线。进行组合一致性操作
     graphic = CompositeGraphic()
 
     graphic.add(graphic1)

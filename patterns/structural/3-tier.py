@@ -5,7 +5,7 @@
 *TL;DR80
 Separates presentation, application processing, and data management functions.
 """
-
+# 利用get装饰器
 
 class Data(object):
     """ Data Store Class """
@@ -41,6 +41,7 @@ class Ui(object):
 
     def get_product_list(self):
         print('PRODUCT LIST:')
+        print(self.business_logic.data)
         for product in self.business_logic.product_list():
             print(product)
         print('')
