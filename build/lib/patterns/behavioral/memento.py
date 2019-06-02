@@ -114,7 +114,7 @@ def main():
 
     >>> print(num_obj)
     <NumObj: 2>
-
+# 一个对象外一个对象内
     >>> print('-- now doing stuff ...')
     -- now doing stuff ...
 
